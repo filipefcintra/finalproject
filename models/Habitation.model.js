@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { Schema, model } = require("mongoose");
 
 const HabitationSchema = new Schema({
-  title: { type: String, required: true },
+  title: { type: String },
   website: { type: String },
   description: { type: String, required: true },
   phone: { type: String },
@@ -11,7 +11,7 @@ const HabitationSchema = new Schema({
     type: String,
     enum: ["Apartamento", "Casa", "Quarto", "Estudio", "Loja", "Outro"],
   },
-  price: { tipo: Number, required: true },
+  price: { tipo: String },
   room: { type: String, enum: ["Studio", "1", "2", "3", "4+"] },
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 });
