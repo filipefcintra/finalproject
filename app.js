@@ -1,8 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-// require("./config/db.config")();
-const connectToDb = require("./config/db.config");
+require("./config/db.config")();
 
 const PORT = 4000;
 
@@ -14,6 +13,12 @@ app.use(cors({ origin: process.env.REACT_APP_URL }));
 
 const userRouter = require("./routes/user.routes");
 app.use("/", userRouter);
+
+const habitationRouter = require("./routes/habitation.routes");
+app.use("/", habitationRouter);
+
+const jobRouter = require("./routes/job.routes");
+app.use("/", jobRouter);
 
 app.listen(Number(process.env.PORT), () =>
   console.log(`Server up and running at port ${process.env.PORT}`)
