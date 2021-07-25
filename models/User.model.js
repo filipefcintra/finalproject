@@ -13,7 +13,7 @@ const UserSchema = new Schema({
   passwordHash: { type: String, required: true },
   country: { type: String, required: true },
   city: { type: String, required: true },
-  birthDate: { type: Date, required: true },
+  birthDate: { type: Date },
   role: {
     type: String,
     enum: ["ADMIN", "USER"],
