@@ -10,10 +10,10 @@ const UserSchema = new Schema({
     trim: true,
     lowercase: true,
   },
+  profilePictureUrl: { type: String, trim: true },
   passwordHash: { type: String, required: true },
   country: { type: String, required: true },
   city: { type: String, required: true },
-  birthDate: { type: Date },
   role: {
     type: String,
     enum: ["ADMIN", "USER"],

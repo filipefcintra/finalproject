@@ -5,6 +5,7 @@ const ContentsSchema = new Schema({
   category: {
     type: String,
     enum: ["orgãos", "documentos", "impostos", "estudos", "bancos"],
+    required: true,
   },
   country: { type: String, required: true },
   content: [

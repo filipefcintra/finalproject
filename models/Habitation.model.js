@@ -6,11 +6,13 @@ const HabitationSchema = new Schema({
   website: { type: String },
   description: { type: String, required: true },
   phone: { type: String },
+  //photo??
   photo: { type: String },
-  companyEmail: { type: String, required: true, trim: true },
+  companyEmail: { type: String, required: true, trim: true, lowercase: true },
   type: {
     type: String,
     enum: ["Apartamento", "Casa", "Quarto", "Estudio", "Loja", "Outro"],
+    required: true,
   },
   price: { type: Number, required: true },
   room: {
