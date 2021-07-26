@@ -4,14 +4,14 @@ const { Schema, model } = require("mongoose");
 const ContentsSchema = new Schema({
   category: {
     type: String,
-    enum: ["orgãos", "documentos", "imposto", "estudos", "bancos"],
+    enum: ["orgãos", "documentos", "impostos", "estudos", "bancos"],
   },
   country: { type: String, required: true },
   content: [
     new Schema({
       type: {
         type: String,
-        enum: ["texto", "imagem", "titulo", "lista", "link"],
+        enum: ["texto", "imagem", "título", "lista", "link"],
       },
       content: { type: String },
     }),

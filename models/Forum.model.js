@@ -4,10 +4,23 @@ const { Schema, model } = require("mongoose");
 const PostSchema = new Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
-  //   Pensar em quais tags terao no site
-  tags: { type: String, enum: ["definir tags"] },
-  //   Ver se isso ta certo
-  answers: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comments" }],
+  tags: {
+    type: String,
+    enum: [
+      "saúde",
+      "impostos",
+      "estudos",
+      "bancos",
+      "moradia",
+      "empregos",
+      "negócios",
+      "doações",
+      "vistos",
+      "dicas",
+    ],
+    required: true,
+  },
+  answersId: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comments" }],
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 });
 
