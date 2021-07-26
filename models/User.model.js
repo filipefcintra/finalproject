@@ -10,6 +10,7 @@ const UserSchema = new Schema({
     trim: true,
     lowercase: true,
   },
+  photo: {type: Image};
   passwordHash: { type: String, required: true },
   country: { type: String, required: true },
   city: { type: String, required: true },
