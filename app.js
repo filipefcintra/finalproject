@@ -20,6 +20,10 @@ app.use("/", habitationRouter);
 const jobRouter = require("./routes/job.routes");
 app.use("/", jobRouter);
 
+const contentsRouter = require("./routes/contents.routes");
+app.use("/", contentsRouter);
+
+
 app.listen(Number(process.env.PORT), () =>
   console.log(`Server up and running at port ${process.env.PORT}`)
 );
