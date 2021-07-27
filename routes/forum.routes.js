@@ -4,6 +4,7 @@ const router = express.Router();
 const isAuthenticated = require("../middlewares/isAuthenticated");
 const attachCurrentUser = require("../middlewares/attachCurrentUser");
 const ForumModel = require("../models/Forum.model");
+const CommentsModel = require("../models/Comments.model");
 
 router.post(
   "/forum",
@@ -36,7 +37,7 @@ router.get(
   async (req, res, next) => {
     try {
       const foruns = await ForumModel.find();
-
+      console.log(foruns);
       return res.status(200).json(foruns);
     } catch (err) {
       next(err);
@@ -53,7 +54,10 @@ router.get(
   async (req, res, next) => {
     try {
       const { id } = req.params;
-      const forum = await ForumModel.findOne({ _id: id }).populate("User");
+      const forum = await ForumModel.findOne({ _id: id }).populate({
+        path: "answersId",
+        model: CommentsModel,
+      });
 
       if (forum) {
         return res.status(200).json(forum);
