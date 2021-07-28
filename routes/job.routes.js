@@ -1,8 +1,6 @@
 const express = require("express");
 const router = express.Router();
 
-const UserModel = require("../models/User.model");
-
 const isAuthenticated = require("../middlewares/isAuthenticated");
 const attachCurrentUser = require("../middlewares/attachCurrentUser");
 const JobModel = require("../models/Job.model");
@@ -61,7 +59,7 @@ router.get(
       if (emprego) {
         return res.status(200).json(emprego);
       }
-      return res.status(400).json({ error: "Anuncio nao encontrado" });
+      return res.status(400).json({ error: "Anúncio não encontrado." });
     } catch (err) {
       next(err);
     }
@@ -87,7 +85,7 @@ router.put(
       if (updatedJob) {
         return res.status(200).json(updatedJob);
       }
-      return res.status(404).json({ error: "Anuncio nao encontrado." });
+      return res.status(404).json({ error: "Anúncio não encontrado." });
     } catch (err) {
       next(err);
     }
@@ -109,7 +107,7 @@ router.delete(
       if (this.deleteJob) {
         return res.status(200).json({});
       }
-      return res.status(404).json({ error: "Anuncio nao encontrado." });
+      return res.status(404).json({ error: "Anúncio não encontrado." });
     } catch (err) {
       next(err);
     }

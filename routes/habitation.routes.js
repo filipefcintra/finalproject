@@ -1,8 +1,6 @@
 const express = require("express");
 const router = express.Router();
 
-const UserModel = require("../models/User.model");
-
 const isAuthenticated = require("../middlewares/isAuthenticated");
 const attachCurrentUser = require("../middlewares/attachCurrentUser");
 const HabitationModel = require("../models/Habitation.model");
@@ -55,7 +53,6 @@ router.get(
   async (req, res, next) => {
     try {
       const { id } = req.params;
-      // Checar esse populate
       const habitation = await HabitationModel.findOne({ _id: id }).populate(
         "User"
       );
@@ -63,7 +60,7 @@ router.get(
       if (habitation) {
         return res.status(200).json(habitation);
       }
-      return res.status(400).json({ error: "Anuncio nao encontrado" });
+      return res.status(400).json({ error: "Anúncio não encontrado." });
     } catch (err) {
       next(err);
     }
@@ -80,16 +77,16 @@ router.put(
     try {
       const { id } = req.params;
 
-      const updatedHabitation = await HabitationModel.findOneAndUpdate(
+      const updateHabitation = await HabitationModel.findOneAndUpdate(
         { _id: id },
         { $set: { ...req.body } },
         { new: true }
       );
 
-      if (updatedHabitation) {
-        return res.status(200).json(updatedHabitation);
+      if (updateHabitation) {
+        return res.status(200).json(updateHabitation);
       }
-      return res.status(404).json({ error: "Anuncio nao encontrado." });
+      return res.status(404).json({ error: "Anúncio não encontrado." });
     } catch (err) {
       next(err);
     }
@@ -111,7 +108,7 @@ router.delete(
       if (deleteHabitation) {
         return res.status(200).json({});
       }
-      return res.status(404).json({ error: "Anuncio nao encontrado." });
+      return res.status(404).json({ error: "Anúncio não encontrado." });
     } catch (err) {
       next(err);
     }
