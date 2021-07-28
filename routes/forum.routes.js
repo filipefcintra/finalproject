@@ -5,6 +5,7 @@ const isAuthenticated = require("../middlewares/isAuthenticated");
 const attachCurrentUser = require("../middlewares/attachCurrentUser");
 const ForumModel = require("../models/Forum.model");
 const CommentsModel = require("../models/Comments.model");
+const uploader = require("../config/cloudinary.config");
 
 router.post(
   "/forum",
@@ -62,33 +63,34 @@ router.get(
       if (forum) {
         return res.status(200).json(forum);
       }
-      return res.status(400).json({ error: "Pergunta não encontrada." });
+      return res.status(400).json({ error: "Publicação não encontrada." });
     } catch (err) {
       next(err);
     }
   }
 );
 
-// Atualizar uma pergunta
+// Atualizar um POST
 
 router.put(
   "/forum/:id",
   isAuthenticated,
   attachCurrentUser,
   async (req, res, next) => {
+    console.log("oi");
     try {
       const { id } = req.params;
 
       const updatedQuestion = await ForumModel.findOneAndUpdate(
         { _id: id },
         { $set: { ...req.body } },
-        { new: true }
+        { new: true, runValidators: true }
       );
 
       if (updatedQuestion) {
         return res.status(200).json(updatedQuestion);
       }
-      return res.status(404).json({ error: "Pergunta não encontrada." });
+      return res.status(404).json({ error: "Publicação não encontrada." });
     } catch (err) {
       next(err);
     }
@@ -110,11 +112,23 @@ router.delete(
       if (deleteQuestion) {
         return res.status(200).json({});
       }
-      return res.status(404).json({ error: "Pergunta não encontrada" });
+      return res.status(404).json({ error: "Publicação não encontrada." });
     } catch (err) {
       next(err);
     }
   }
 );
+
+router.post("/upload", uploader.single("profilePicture"), (req, res) => {
+  if (!req.file) {
+    return res
+      .status(500)
+      .json({ error: "Não foi possível completar o upload do arquivo" });
+  }
+
+  console.log(req.file);
+
+  return res.status(201).json({ url: req.file.path });
+});
 
 module.exports = router;
