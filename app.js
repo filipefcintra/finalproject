@@ -17,6 +17,9 @@ app.use("/", userRouter);
 const habitationRouter = require("./routes/habitation.routes");
 app.use("/", habitationRouter);
 
+const forumRouter = require("./routes/forum.routes");
+app.use("/", forumRouter);
+
 const jobRouter = require("./routes/job.routes");
 app.use("/", jobRouter);
 

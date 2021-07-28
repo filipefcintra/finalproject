@@ -12,7 +12,7 @@ const ContentsSchema = new Schema({
     new Schema({
       type: {
         type: String,
-        enum: ["texto", "imagem", "título", "lista", "link"],
+        enum: ["texto", "imagem", "titulo", "lista", "link"],
       },
       content: { type: String },
     }),
