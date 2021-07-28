@@ -7,6 +7,8 @@ const JobSchema = new Schema({
   description: { type: String, required: true },
   phone: { type: String, trim: true },
   company: { type: String, required: true },
+  companyEmail: { type: String, trim: true },
+  salary: { type: String },
   country: { type: String },
   city: { type: String },
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
