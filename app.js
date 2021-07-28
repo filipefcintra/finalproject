@@ -26,6 +26,9 @@ app.use("/", jobRouter);
 const contentsRouter = require("./routes/contents.routes");
 app.use("/", contentsRouter);
 
+const commentsRouter = require("./routes/comments.routes");
+app.use("/", commentsRouter);
+
 app.listen(Number(process.env.PORT), () =>
   console.log(`Server up and running at port ${process.env.PORT}`)
 );
