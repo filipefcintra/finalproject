@@ -4,6 +4,7 @@ const router = express.Router();
 const isAuthenticated = require("../middlewares/isAuthenticated");
 const attachCurrentUser = require("../middlewares/attachCurrentUser");
 const HabitationModel = require("../models/Habitation.model");
+const uploader = require("../config/cloudinary.config");
 
 router.post(
   "/moradia",
@@ -19,7 +20,7 @@ router.post(
         ...req.body,
         userId: req.currentUser._id,
       });
-
+      console.log(req.body)
       return res.status(201).json(newPost);
     } catch (err) {
       next(err);
@@ -114,5 +115,16 @@ router.delete(
     }
   }
 );
+router.post("/upload", uploader.single("profilePicture"), (req, res) => {
+  if (!req.file) {
+    return res
+      .status(500)
+      .json({ error: "Não foi possível completar o upload do arquivo" });
+  }
+
+  console.log(req.file);
+
+  return res.status(201).json({ url: req.file.path });
+});
 
 module.exports = router;
