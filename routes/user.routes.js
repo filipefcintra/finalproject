@@ -118,7 +118,7 @@ router.get("/profile", isAuthenticated, attachCurrentUser, (req, res) => {
 });
 
 router.put(
-  "/profile",
+  "/editar-profile",
   isAuthenticated,
   attachCurrentUser,
   async (req, res, next) => {
