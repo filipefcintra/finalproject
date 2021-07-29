@@ -3,7 +3,7 @@ const router = express.Router();
 
 const ContentsModel = require("../models/Contents.model");
 
-router.post("/conteudo", async (req, res, next) => {
+router.post("/:country/conteudo", async (req, res, next) => {
   try {
     const newDoc = await ContentsModel.create({ ...req.body });
 
@@ -13,7 +13,7 @@ router.post("/conteudo", async (req, res, next) => {
   }
 });
 
-router.get("/conteudo/:country", async (req, res, nex) => {
+router.get("/:country/conteudo", async (req, res, nex) => {
   try {
     const allDoc = await ContentsModel.findOne({
       country: req.params.country,

@@ -14,7 +14,7 @@ const ContentsSchema = new Schema({
         type: String,
         enum: ["texto", "imagem", "titulo", "lista", "link"],
       },
-      content: { type: String },
+      conteudo: { type: String },
     }),
   ],
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },

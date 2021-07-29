@@ -6,7 +6,7 @@ const attachCurrentUser = require("../middlewares/attachCurrentUser");
 const JobModel = require("../models/Job.model");
 
 router.post(
-  "/emprego",
+  "/:country/emprego",
   isAuthenticated,
   attachCurrentUser,
   async (req, res, next) => {
@@ -18,6 +18,7 @@ router.post(
       const newJob = await JobModel.create({
         ...req.body,
         userId: req.currentUser._id,
+        country: req.params.country,
       });
 
       return res.status(201).json(newJob);
@@ -30,12 +31,12 @@ router.post(
 //Listar todos os anuncios
 
 router.get(
-  "/emprego",
+  "/:country/emprego",
   isAuthenticated,
   attachCurrentUser,
   async (req, res, next) => {
     try {
-      const empregos = await JobModel.find();
+      const empregos = await JobModel.find({ country: req.params.country });
 
       return res.status(200).json(empregos);
     } catch (err) {
@@ -47,7 +48,7 @@ router.get(
 // Listar um anuncio especifico
 
 router.get(
-  "/emprego/:id",
+  "/:country/emprego/:id",
   isAuthenticated,
   attachCurrentUser,
   async (req, res, next) => {
@@ -69,7 +70,7 @@ router.get(
 // Atualizar um anuncio
 
 router.put(
-  "/emprego/:id",
+  "/:country/emprego/:id",
   isAuthenticated,
   attachCurrentUser,
   async (req, res, next) => {
@@ -95,7 +96,7 @@ router.put(
 // Deletar anuncio
 
 router.delete(
-  "/emprego/:id",
+  "/:country/emprego/:id",
   isAuthenticated,
   attachCurrentUser,
   async (req, res, next) => {

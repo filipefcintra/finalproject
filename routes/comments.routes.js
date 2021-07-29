@@ -8,7 +8,7 @@ const CommentsModel = require("../models/Comments.model");
 const ForumModel = require("../models/Forum.model");
 
 router.post(
-  "/forum/:id/comments",
+  "/:country/forum/:id/comments",
   isAuthenticated,
   attachCurrentUser,
   async (req, res, next) => {
@@ -35,7 +35,7 @@ router.post(
 // Apagar um comentário
 
 router.delete(
-  "/forum/:id/comments",
+  "/:country/forum/:id/comments",
   isAuthenticated,
   attachCurrentUser,
   async (req, res, next) => {
