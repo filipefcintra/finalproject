@@ -3,7 +3,7 @@ const router = express.Router();
 
 const ContentsModel = require("../models/Contents.model");
 
-router.post("/conteudo", async (req, res, next) => {
+router.post("/:country/conteudo", async (req, res, next) => {
   try {
     const newDoc = await ContentsModel.create({ ...req.body });
 

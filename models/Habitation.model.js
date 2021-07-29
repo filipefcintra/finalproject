@@ -21,6 +21,7 @@ const HabitationSchema = new Schema({
     required: true,
   },
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  country: { type: String, required: true },
 });
 
 module.exports = model("Habitation", HabitationSchema);

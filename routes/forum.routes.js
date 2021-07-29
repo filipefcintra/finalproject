@@ -8,7 +8,7 @@ const CommentsModel = require("../models/Comments.model");
 const uploader = require("../config/cloudinary.config");
 
 router.post(
-  "/forum",
+  "/:country/forum",
   isAuthenticated,
   attachCurrentUser,
   async (req, res, next) => {
@@ -20,6 +20,7 @@ router.post(
       const newQuestion = await ForumModel.create({
         ...req.body,
         userId: req.currentUser._id,
+        country: req.params.country,
       });
 
       return res.status(201).json(newQuestion);
@@ -32,12 +33,12 @@ router.post(
 //Listar todas as perguntas
 
 router.get(
-  "/forum",
+  "/:country/forum",
   isAuthenticated,
   attachCurrentUser,
   async (req, res, next) => {
     try {
-      const foruns = await ForumModel.find();
+      const foruns = await ForumModel.find({ country: req.params.country });
 
       return res.status(200).json(foruns);
     } catch (err) {
@@ -49,7 +50,7 @@ router.get(
 // Listar uma pergunta especifica
 
 router.get(
-  "/forum/:id",
+  "/:country/forum/:id",
   isAuthenticated,
   attachCurrentUser,
   async (req, res, next) => {
@@ -73,7 +74,7 @@ router.get(
 // Atualizar um POST
 
 router.put(
-  "/forum/:id",
+  "/:country/forum/:id",
   isAuthenticated,
   attachCurrentUser,
   async (req, res, next) => {
@@ -99,7 +100,7 @@ router.put(
 // Deletar uma pergunta
 
 router.delete(
-  "/forum/:id",
+  "/:country/forum/:id",
   isAuthenticated,
   attachCurrentUser,
   async (req, res, next) => {

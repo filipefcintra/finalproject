@@ -7,7 +7,7 @@ const HabitationModel = require("../models/Habitation.model");
 const uploader = require("../config/cloudinary.config");
 
 router.post(
-  "/moradia",
+  "/:country/moradia",
   isAuthenticated,
   attachCurrentUser,
   async (req, res, next) => {
@@ -19,8 +19,9 @@ router.post(
       const newPost = await HabitationModel.create({
         ...req.body,
         userId: req.currentUser._id,
+        country: req.params.country,
       });
-      console.log(req.body)
+      console.log(req.body);
       return res.status(201).json(newPost);
     } catch (err) {
       next(err);
@@ -31,12 +32,14 @@ router.post(
 //Listar todos os anuncios
 
 router.get(
-  "/moradia",
+  "/:country/moradia",
   isAuthenticated,
   attachCurrentUser,
   async (req, res, next) => {
     try {
-      const habitations = await HabitationModel.find();
+      const habitations = await HabitationModel.find({
+        country: req.params.country,
+      });
 
       return res.status(200).json(habitations);
     } catch (err) {
@@ -48,7 +51,7 @@ router.get(
 // Listar um anuncio especifico
 
 router.get(
-  "/moradia/:id",
+  "/:country/moradia/:id",
   isAuthenticated,
   attachCurrentUser,
   async (req, res, next) => {
@@ -71,7 +74,7 @@ router.get(
 // Atualizar um anuncio
 
 router.put(
-  "/moradia/:id",
+  "/:country/moradia/:id",
   isAuthenticated,
   attachCurrentUser,
   async (req, res, next) => {
@@ -97,7 +100,7 @@ router.put(
 // Deletar anuncio
 
 router.delete(
-  "/moradia/:id",
+  "/:country/moradia/:id",
   isAuthenticated,
   attachCurrentUser,
   async (req, res, next) => {

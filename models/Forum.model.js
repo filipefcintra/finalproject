@@ -24,6 +24,7 @@ const PostSchema = new Schema({
   },
   answersId: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comments" }],
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  country: { type: String, required: true },
 });
 
 module.exports = model("Post", PostSchema);
