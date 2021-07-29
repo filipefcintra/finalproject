@@ -13,7 +13,7 @@ router.post("/conteudo", async (req, res, next) => {
   }
 });
 
-router.get("/conteudo/:country", async (req, res, nex) => {
+router.get("/:country/conteudo", async (req, res, nex) => {
   try {
     const allDoc = await ContentsModel.findOne({
       country: req.params.country,

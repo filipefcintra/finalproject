@@ -11,13 +11,13 @@ const HabitationSchema = new Schema({
   companyEmail: { type: String, required: true, trim: true, lowercase: true },
   type: {
     type: String,
-    enum: ["Apartamento", "Casa", "Quarto", "Estudio", "Loja", "Outro"],
+    enum: ["Apartamento", "Casa", "Quarto", "Estúdio", "Loja", "Outro"],
     required: true,
   },
   price: { type: Number, required: true },
   room: {
     type: String,
-    enum: ["Estudio", "1", "2", "3", "4+"],
+    enum: ["Estúdio", "1", "2", "3", "4+"],
     required: true,
   },
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
