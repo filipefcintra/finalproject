@@ -38,7 +38,7 @@ router.get(
   async (req, res, next) => {
     try {
       const foruns = await ForumModel.find();
-      console.log(foruns);
+
       return res.status(200).json(foruns);
     } catch (err) {
       next(err);
@@ -77,7 +77,6 @@ router.put(
   isAuthenticated,
   attachCurrentUser,
   async (req, res, next) => {
-    console.log("oi");
     try {
       const { id } = req.params;
 
