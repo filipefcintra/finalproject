@@ -8,15 +8,8 @@ const ContentsSchema = new Schema({
     required: true,
   },
   country: { type: String, required: true },
-  content: [
-    new Schema({
-      type: {
-        type: String,
-        enum: ["texto", "imagem", "titulo", "lista", "link"],
-      },
-      conteudo: { type: String },
-    }),
-  ],
+  content: { type: String },
+  conteudo: { type: String },
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 });
 
